@@ -20,7 +20,31 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         appBar: const _CustomAppBar(),
         bottomNavigationBar: const _CustomNavBar(),
-        body: Container(),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Bonjour',
+                  style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  'Profiter de votre musique preferer',
+                  style: Theme.of(context)
+                            .textTheme
+                            .headline6!
+                            .copyWith(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
