@@ -14,7 +14,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        textTheme: Theme.of(context).textTheme.apply()
+        textTheme: Theme.of(context).textTheme.apply(
+          bodyColor: Colors.white,
+          displayColor: Colors.white,
+        )
       ),
       home: const HomeScreen(),
       getPages: [
