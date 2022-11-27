@@ -42,6 +42,19 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 20.0),
                       child: SectionHeader(title: 'Top Music'),
                     ),
+
+                    const SizedBox(height: 20),
+                    
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.27,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: songs.length,
+                        itemBuilder: (context, index) {
+                          return SongCard(song: songs[index]);
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),
