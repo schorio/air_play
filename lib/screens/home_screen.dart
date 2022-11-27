@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../models/song_model.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    List<Song> songs = Song.songs;
+
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
