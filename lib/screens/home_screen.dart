@@ -30,10 +30,20 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               const _DiscoverMusic(),
-              Column(
-                children: [
-                  SectionHeader(title: 'Top Music'),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 20.0,
+                  top: 20.0,
+                  bottom: 20.0,
+                ),
+                child: Column(
+                  children: [
+                    const Padding(
+                      padding: const EdgeInsets.only(right: 20.0),
+                      child: SectionHeader(title: 'Top Music'),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
