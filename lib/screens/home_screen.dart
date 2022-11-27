@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/song_model.dart';
+import '../widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -29,6 +30,11 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               const _DiscoverMusic(),
+              Column(
+                children: [
+                  SectionHeader(title: 'Top Music'),
+                ],
+              ),
             ],
           ),
         ),
@@ -36,6 +42,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
 
 class _DiscoverMusic extends StatelessWidget {
   const _DiscoverMusic({
