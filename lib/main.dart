@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'screens/home_screen.dart';
+import 'screens/screens.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
       home: const HomeScreen(),
       getPages: [
         GetPage(name: '/', page: () => const HomeScreen()),
-        // GetPage(name: '/song', page: () => const SongScreen()),
-        // GetPage(name: '/playlist', page: () => const PlaylistScreen())
+        GetPage(name: '/song', page: () => const SongScreen()),
+        GetPage(name: '/playlist', page: () => const PlaylistScreen())
       ],
     );
   }
