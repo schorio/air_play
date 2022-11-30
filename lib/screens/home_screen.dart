@@ -31,6 +31,14 @@ class HomeScreen extends StatelessWidget {
             children: [
               const _DiscoverMusic(),
               _TrendingMusic(songs: songs),
+              Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    SectionHeader(title: 'Playlists')
+                  ],
+                ),
+              )
             ],
           ),
         ),
