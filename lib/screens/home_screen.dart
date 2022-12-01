@@ -37,7 +37,28 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.all(20.0),
                 child: Column(
                   children: [
-                    SectionHeader(title: 'Playlists')
+                    const SectionHeader(title: 'Playlists'),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: playlists.length,
+                      itemBuilder: ((context, index) {
+                        return Container(
+                          child: Row(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(15.0),
+                                child: Image.asset(
+                                  playlists[index].imageUrl,
+                                  height: 50,
+                                  width: 50,
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      })
+                    )
                   ],
                 ),
               )
