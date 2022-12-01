@@ -13,7 +13,7 @@ class Playlist {
 
   static List<Playlist> playlists = [
     Playlist(
-      title: 'Hip-hop',
+      title: 'Plugg Music',
       songs: Song.songs,
       imageUrl: 'asset/pochette.jpg'
     ),
