@@ -1,3 +1,4 @@
+import 'package:air_play/models/playlist_model.dart';
 import 'package:flutter/material.dart';
 
 import '../models/song_model.dart';
@@ -10,6 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     List<Song> songs = Song.songs;
+    List<Playlist> playlists = Playlist.playlists;
 
     return Container(
       decoration: BoxDecoration(
