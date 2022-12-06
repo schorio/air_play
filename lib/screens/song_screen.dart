@@ -13,7 +13,9 @@ class SongScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
+      extendBodyBehindAppBar: true,
       body: Stack(
+        fit: StackFit.expand,
         children: [
           Image.asset(
             song.coverUrl,
