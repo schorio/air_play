@@ -13,10 +13,12 @@ class PlaylistCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 63,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(15.0),
+            borderRadius: BorderRadius.circular(10.0),
             child: Image.asset(
               playlist.imageUrl,
               height: 50,
@@ -24,23 +26,37 @@ class PlaylistCard extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          Column(
-            children: [
-              Text(
-                playlist.title,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge!
-                    .copyWith(fontWeight: FontWeight.bold),
-              ),
-              Text(
-                '${playlist.songs.length} songs',
-                maxLines: 2,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall
-              )
-            ],
+
+          const SizedBox(width: 15),
+
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  playlist.title,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  '${playlist.songs.length} songs',
+                  maxLines: 2,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                )
+              ],
+            ),
+          ),
+          IconButton(
+            onPressed: () {}, 
+            icon: const Icon(
+              Icons.play_circle,
+              color: Colors.white,
+            ),
           )
         ],
       ),
