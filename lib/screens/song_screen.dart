@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
 
+import '../models/song_model.dart';
+
 class SongScreen extends StatelessWidget {
   const SongScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    Song song = Song.songs[0];
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: Stack(
+        children: [
+          Image.asset(
+            song.coverUrl,
+            fit: BoxFit.cover,
+          )
+        ],
+      ),
+    );
   }
 }
