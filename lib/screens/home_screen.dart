@@ -40,6 +40,8 @@ class HomeScreen extends StatelessWidget {
                     const SectionHeader(title: 'Playlists'),
                     ListView.builder(
                       shrinkWrap: true,
+                      padding: const EdgeInsets.only(top: 20),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: playlists.length,
                       itemBuilder: ((context, index) {
                         return PlaylistCard(playlist: playlists[index]);
