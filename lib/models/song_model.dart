@@ -1,7 +1,7 @@
 class Song {
   final String title;
   final String artistes;
-  final String  url;
+  final String url;
   final String coverUrl;
 
   Song({
