@@ -34,7 +34,7 @@ class PlaylistScreen extends StatelessWidget {
               children: [
                 _PlaylistInformation(playlist: playlist),
                 const SizedBox(height: 30),
-                _PlayOrShuffleSwitch()
+                const _PlayOrShuffleSwitch()
               ],
             ),
           ),
