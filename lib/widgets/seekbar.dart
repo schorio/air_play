@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class SeekBarData {
@@ -12,14 +14,14 @@ class SeekBar extends StatefulWidget {
   final Duration duration;
   final Duration position;
   final ValueChanged<Duration>? onChanged;
-  final ValueChanged<Duration>? onChangedEnd;
+  final ValueChanged<Duration>? onChangeEnd;
 
   const SeekBar({
     super.key, 
     required this.duration, 
     required this.position, 
     this.onChanged, 
-    this.onChangedEnd
+    this.onChangeEnd
   });
 
   @override
@@ -28,10 +30,13 @@ class SeekBar extends StatefulWidget {
 
 
 class _SeekBarState extends State<SeekBar> {
+  double? _dragValue;
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
+        Text('${widget.position}'),
         Expanded(
           child: SliderTheme(
             data: SliderTheme
@@ -51,11 +56,41 @@ class _SeekBarState extends State<SeekBar> {
                       overlayColor: Colors.white
                     ),
             child: Slider(
-              value: 0, 
-              onChanged: (value) {},
+              min: 0.0,
+              max: widget.duration.inMilliseconds.toDouble(),
+              value: min(
+                _dragValue ?? widget.position.inMilliseconds.toDouble(),
+                widget.duration.inMilliseconds.toDouble(),
+              ), 
+              onChanged: (value) {
+                setState(() {
+                  _dragValue = value;
+                });
+                if (widget.onChanged != null) {
+                  widget.onChanged!(
+                    Duration(
+                      milliseconds: value.round()
+                    )
+                  );
+                }
+              },
+              onChangeEnd: (value) {
+                setState(() {
+                  _dragValue = value;
+                });
+                if (widget.onChangeEnd != null) {
+                  widget.onChangeEnd!(
+                    Duration(
+                      milliseconds: value.round()
+                    )
+                  );
+                }
+                _dragValue = null;
+              },
             ),
           ),
-        )
+        ),
+        Text('${widget.duration}'),
       ],
     );
   }
