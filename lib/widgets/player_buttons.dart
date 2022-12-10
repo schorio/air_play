@@ -17,6 +17,7 @@ class _PlayerButtonsState extends State<PlayerButtons> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         StreamBuilder(
           stream: widget.audioPlayer.playerStateStream,
