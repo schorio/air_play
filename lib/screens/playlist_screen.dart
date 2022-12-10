@@ -76,7 +76,19 @@ class _PlayOrShuffleSwitchState extends State<_PlayOrShuffleSwitch> {
         child: Stack(
           children: [ 
 
-            
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 200),
+              left: isPlay ? 0 : width * 0.45,
+              child: Container(
+                height: 50,
+                width: width * 0.45,
+                decoration: BoxDecoration(
+                  color: Colors.deepPurple.shade400,
+                  borderRadius: BorderRadius.circular(15)
+                ),
+              ),
+            ),
+
             Row(
               children: [
                 Expanded(
