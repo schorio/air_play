@@ -19,13 +19,12 @@ class _PlayerButtonsState extends State<PlayerButtons> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        StreamBuilder(
+        StreamBuilder<PlayerState>(
           stream: widget.audioPlayer.playerStateStream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final playerState = snapshot.data;
-              final processingState =
-                  (playerState! as PlayerState).processingState;
+              final processingState = playerState!.processingState;
 
               if (processingState == ProcessingState.loading ||
                   processingState == ProcessingState.buffering) {
