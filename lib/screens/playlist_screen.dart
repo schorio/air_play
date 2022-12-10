@@ -55,36 +55,39 @@ class _PlaylistSong extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: playlist.songs.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          
-          leading: Text(
-            '${index + 1}',
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium!
-                .copyWith(
-                  fontWeight: FontWeight.bold
-                ),
-          ),
-
-          title: Text(
-            playlist.songs[index].title,
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(
-                  fontWeight: FontWeight.bold
-                ),
-          ),
-
-          subtitle: Text('${playlist.songs[index].artistes} - 02:45'),
-        );
-      }
+    return Padding(
+      padding: const EdgeInsets.only(top: 20.0),
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: playlist.songs.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            
+            leading: Text(
+              '${index + 1}',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(
+                    fontWeight: FontWeight.bold
+                  ),
+            ),
+    
+            title: Text(
+              playlist.songs[index].title,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .copyWith(
+                    fontWeight: FontWeight.bold
+                  ),
+            ),
+    
+            subtitle: Text('${playlist.songs[index].artistes} - 02:45'),
+          );
+        }
+      ),
     );
   }
 }
