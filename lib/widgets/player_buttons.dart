@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 
-class PlayerButtons extends StatefulWidget {
+class PlayerButtons extends StatelessWidget {
   const PlayerButtons({
     Key? key,
     required this.audioPlayer,
@@ -10,17 +10,27 @@ class PlayerButtons extends StatefulWidget {
   final AudioPlayer audioPlayer;
 
   @override
-  State<PlayerButtons> createState() => _PlayerButtonsState();
-}
-
-class _PlayerButtonsState extends State<PlayerButtons> {
-  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+
+        StreamBuilder<SequenceState?>(
+          stream: audioPlayer.sequenceStateStream,
+          builder: (context, index) {
+            return IconButton(
+              onPressed: audioPlayer.hasPrevious ? audioPlayer.seekToPrevious : null, 
+              iconSize: 45,
+              icon: const Icon(
+                Icons.skip_previous_outlined,
+                color: Colors.white,
+              )
+            );
+          }
+        ),
+
         StreamBuilder<PlayerState>(
-          stream: widget.audioPlayer.playerStateStream,
+          stream: audioPlayer.playerStateStream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final playerState = snapshot.data;
@@ -35,19 +45,19 @@ class _PlayerButtonsState extends State<PlayerButtons> {
                   child: const CircularProgressIndicator(),
                 );
               }
-              else if (!widget.audioPlayer.playing) {
+              else if (!audioPlayer.playing) {
                 return IconButton(
-                  onPressed: widget.audioPlayer.play,
+                  onPressed: audioPlayer.play,
                   iconSize: 75, 
                   icon: const Icon(
-                    Icons.play_circle,
+                    Icons.play_circle_fill_outlined,
                     color: Colors.white
                   )
                 );
               }
               else if (processingState != ProcessingState.completed) {
                 return IconButton(
-                  onPressed: widget.audioPlayer.pause,
+                  onPressed: audioPlayer.pause,
                   iconSize: 75, 
                   icon: const Icon(
                     Icons.pause_circle,
@@ -57,9 +67,9 @@ class _PlayerButtonsState extends State<PlayerButtons> {
               }
               else {
                 return IconButton(
-                  onPressed: () => widget.audioPlayer.seek(
+                  onPressed: () => audioPlayer.seek(
                     Duration.zero,
-                    index: widget.audioPlayer.effectiveIndices!.first
+                    index: audioPlayer.effectiveIndices!.first
                   ),
 
                   iconSize: 75, 
@@ -74,7 +84,21 @@ class _PlayerButtonsState extends State<PlayerButtons> {
               return const CircularProgressIndicator();
             }
           }
-        )
+        ),
+
+        StreamBuilder<SequenceState?>(
+          stream: audioPlayer.sequenceStateStream,
+          builder: (context, index) {
+            return IconButton(
+              onPressed: audioPlayer.hasNext ? audioPlayer.seekToNext : null, 
+              iconSize: 45,
+              icon: const Icon(
+                Icons.skip_next_outlined,
+                color: Colors.white,
+              )
+            );
+          }
+        ),
       ],
     );
   }
