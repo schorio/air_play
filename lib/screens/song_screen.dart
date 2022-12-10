@@ -83,16 +83,28 @@ class _MusicPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<SeekBarData>(
-      stream: _seekBarDataStream,
-      builder: (context, snapshot) {
-        final positionData = snapshot.data;
-        return SeekBar(
-          position: positionData?.position ?? Duration.zero,
-          duration: positionData?.duration ?? Duration.zero,
-          onChangeEnd: audioPlayer.seek,
-        );
-      }
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20.0,
+        vertical: 40.0
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          StreamBuilder<SeekBarData>(
+            stream: _seekBarDataStream,
+            builder: (context, snapshot) {
+              final positionData = snapshot.data;
+              return SeekBar(
+                position: positionData?.position ?? Duration.zero,
+                duration: positionData?.duration ?? Duration.zero,
+                onChangeEnd: audioPlayer.seek,
+              );
+            }
+          ),
+        ],
+      ),
     );
   }
 }
