@@ -134,7 +134,30 @@ class _MusicPlayer extends StatelessWidget {
             }
           ),
 
-          PlayerButtons(audioPlayer: audioPlayer)
+          PlayerButtons(audioPlayer: audioPlayer),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed: () {}, 
+                iconSize: 35,
+                icon: const Icon(
+                  Icons.settings,
+                  color: Colors.white,
+                )
+              ),
+              IconButton(
+                onPressed: () {}, 
+                iconSize: 35,
+                icon: const Icon(
+                  Icons.cloud_download,
+                  color: Colors.white,
+                )
+              )
+            ],
+          )
         ],
       ),
     );
