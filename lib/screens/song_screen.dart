@@ -29,6 +29,11 @@ class _SongScreenState extends State<SongScreen> {
       );
     }
 
+    void dispose() {
+      audioPlayer.dispose();
+      super.dispose();
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
