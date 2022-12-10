@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../models/song_model.dart';
 
-class SongScreen extends StatelessWidget {
+class SongScreen extends StatefulWidget {
   const SongScreen({super.key});
 
   @override
+  State<SongScreen> createState() => _SongScreenState();
+}
+
+class _SongScreenState extends State<SongScreen> {
+  @override
   Widget build(BuildContext context) {
+    AudioPlayer audioPlayer = AudioPlayer();
     Song song = Song.songs[0];
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
