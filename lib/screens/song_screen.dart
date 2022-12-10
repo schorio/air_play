@@ -61,6 +61,17 @@ class _SongScreenState extends State<SongScreen> {
           ),
 
           const _BackgroundFilter(),
+          StreamBuilder<SeekBarData>(
+            stream: _seekBarDataStream,
+            builder: (context, snapshot) {
+              final positionData = snapshot.data;
+              return SeekBar(
+                position: positionData?.duration ?? Duration.zero,
+                duration: positionData?.duration ?? Duration.zero,
+                onChangedEnd: audioPlayer.seek,
+              );
+            }
+          )
         ],
       ),
     );
