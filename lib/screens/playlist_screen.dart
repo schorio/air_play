@@ -25,7 +25,7 @@ class PlaylistScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: const Text('Playlist'),
+          title: const Center(child: Text('Playlist')),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -71,7 +71,7 @@ class _PlayOrShuffleSwitchState extends State<_PlayOrShuffleSwitch> {
         width: width,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(15)
+          borderRadius: BorderRadius.circular(20)
         ),
         child: Stack(
           children: [ 
@@ -84,7 +84,7 @@ class _PlayOrShuffleSwitchState extends State<_PlayOrShuffleSwitch> {
                 width: width * 0.45,
                 decoration: BoxDecoration(
                   color: Colors.deepPurple.shade400,
-                  borderRadius: BorderRadius.circular(15)
+                  borderRadius: BorderRadius.circular(20)
                 ),
               ),
             ),
