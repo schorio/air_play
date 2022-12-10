@@ -1,5 +1,7 @@
+import 'package:air_play/widgets/seekbar.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:rxdart/rxdart.dart' as rxdart;
 
 import '../models/song_model.dart';
 
@@ -11,12 +13,10 @@ class SongScreen extends StatefulWidget {
 }
 
 class _SongScreenState extends State<SongScreen> {
-  @override
-  Widget build(BuildContext context) {
-    AudioPlayer audioPlayer = AudioPlayer();
-    Song song = Song.songs[0];
+  AudioPlayer audioPlayer = AudioPlayer();
+  Song song = Song.songs[0];
 
-    void initState() {
+  void initState() {
       super.initState();
 
       audioPlayer.setAudioSource(
@@ -33,6 +33,18 @@ class _SongScreenState extends State<SongScreen> {
       audioPlayer.dispose();
       super.dispose();
     }
+
+    Stream<SeekBarData> get _seekBarDataStream => 
+    rxdart.Rx.combineLatest2<Duration, Duration?, SeekBarData>(
+      audioPlayer.positionStream,
+      audioPlayer.durationStream,
+      (Duration position, Duration? duration) {
+        return SeekBarData(position, duration ?? Duration.zero);
+      }
+    );
+
+  @override
+  Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: AppBar(
