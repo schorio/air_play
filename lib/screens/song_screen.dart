@@ -1,4 +1,3 @@
-import 'package:air_play/widgets/seekbar.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart' as rxdart;
@@ -17,7 +16,7 @@ class _SongScreenState extends State<SongScreen> {
   AudioPlayer audioPlayer = AudioPlayer();
   Song song = Song.songs[0];
 
-  void initState() {
+    void initState() {
       super.initState();
 
       audioPlayer.setAudioSource(
@@ -25,12 +24,6 @@ class _SongScreenState extends State<SongScreen> {
           children: [
             AudioSource.uri(
               Uri.parse('asset:///${song.url}'),
-            ),
-            AudioSource.uri(
-              Uri.parse('asset:///${Song.songs[1].url}'),
-            ),
-            AudioSource.uri(
-              Uri.parse('asset:///${Song.songs[2].url}'),
             ),
           ])
       );
@@ -42,7 +35,8 @@ class _SongScreenState extends State<SongScreen> {
     }
 
     Stream<SeekBarData> get _seekBarDataStream => 
-    rxdart.Rx.combineLatest2<Duration, Duration?, SeekBarData>(
+    rxdart.Rx.combineLatest2<Duration, Duration?, SeekBarData>
+    (
       audioPlayer.positionStream,
       audioPlayer.durationStream,
       (Duration position, Duration? duration) {
@@ -69,6 +63,7 @@ class _SongScreenState extends State<SongScreen> {
 
           const _BackgroundFilter(),
           _MusicPlayer(
+            song: song,
             seekBarDataStream: _seekBarDataStream, 
             audioPlayer: audioPlayer
           )
@@ -81,10 +76,12 @@ class _SongScreenState extends State<SongScreen> {
 class _MusicPlayer extends StatelessWidget {
   const _MusicPlayer({
     Key? key,
+    required this.song,
     required Stream<SeekBarData> seekBarDataStream,
     required this.audioPlayer,
   }) : _seekBarDataStream = seekBarDataStream, super(key: key);
 
+  final Song song;
   final Stream<SeekBarData> _seekBarDataStream;
   final AudioPlayer audioPlayer;
 
@@ -99,6 +96,32 @@ class _MusicPlayer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+
+          Text(
+            song.title,
+            style: Theme.of(context)
+                      .textTheme
+                      .headlineSmall!
+                      .copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold
+                      ),
+          ),
+
+          const SizedBox(height: 10),
+
+          Text(
+            song.artistes,
+            style: Theme.of(context)
+                      .textTheme
+                      .bodySmall!
+                      .copyWith(
+                          color: Colors.white,
+                      ),
+          ),
+
+          const SizedBox(height: 30),
+
           StreamBuilder<SeekBarData>(
             stream: _seekBarDataStream,
             builder: (context, snapshot) {
