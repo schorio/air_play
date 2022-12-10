@@ -34,12 +34,57 @@ class PlaylistScreen extends StatelessWidget {
               children: [
                 _PlaylistInformation(playlist: playlist),
                 const SizedBox(height: 30),
-                const _PlayOrShuffleSwitch()
+                const _PlayOrShuffleSwitch(),
+                _PlaylistSong(playlist: playlist)
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class _PlaylistSong extends StatelessWidget {
+  const _PlaylistSong({
+    Key? key,
+    required this.playlist,
+  }) : super(key: key);
+
+  final Playlist playlist;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: playlist.songs.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          
+          leading: Text(
+            '${index + 1}',
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium!
+                .copyWith(
+                  fontWeight: FontWeight.bold
+                ),
+          ),
+
+          title: Text(
+            playlist.songs[index].title,
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(
+                  fontWeight: FontWeight.bold
+                ),
+          ),
+
+          subtitle: Text('${playlist.songs[index].artistes} - 02:45'),
+        );
+      }
     );
   }
 }
