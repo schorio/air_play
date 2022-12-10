@@ -16,6 +16,19 @@ class _SongScreenState extends State<SongScreen> {
     AudioPlayer audioPlayer = AudioPlayer();
     Song song = Song.songs[0];
 
+    void initState() {
+      super.initState();
+
+      audioPlayer.setAudioSource(
+        ConcatenatingAudioSource(
+          children: [
+            AudioSource.uri(
+              Uri.parse('asset:///${song.url}'),
+            )
+          ])
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
