@@ -25,7 +25,13 @@ class _SongScreenState extends State<SongScreen> {
           children: [
             AudioSource.uri(
               Uri.parse('asset:///${song.url}'),
-            )
+            ),
+            AudioSource.uri(
+              Uri.parse('asset:///${Song.songs[1].url}'),
+            ),
+            AudioSource.uri(
+              Uri.parse('asset:///${Song.songs[2].url}'),
+            ),
           ])
       );
     }
