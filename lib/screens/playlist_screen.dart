@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../models/playlist_model.dart';
 
@@ -7,7 +8,7 @@ class PlaylistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Playlist playlist = Playlist.playlists[0];
+    Playlist playlist = Get.arguments ?? Playlist.playlists[0];
 
     return Container(
       decoration: BoxDecoration(

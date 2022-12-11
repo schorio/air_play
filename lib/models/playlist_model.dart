@@ -15,17 +15,17 @@ class Playlist {
     Playlist(
       title: 'Plugg Music',
       songs: Song.songs,
-      imageUrl: 'assets/images/pochette.jpg'
+      imageUrl: 'assets/images/plugg.png'
     ),
     Playlist(
       title: 'Dance',
       songs: Song.songs,
-      imageUrl: 'assets/images/pochette.jpg'
+      imageUrl: 'assets/images/edm.png'
     ),
     Playlist(
       title: 'Rap',
       songs: Song.songs,
-      imageUrl: 'assets/images/pochette.jpg'
+      imageUrl: 'assets/images/rap.png'
     ),
   ];
 }
